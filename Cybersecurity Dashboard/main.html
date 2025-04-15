@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberTools - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>CyberTools</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#network" class="active" data-section="network"><i class="fas fa-network-wired"></i> Analyse Réseau</a></li>
+                    <li><a href="#osint" data-section="osint"><i class="fas fa-search"></i> OSINT</a></li>
+                    <li><a href="#mobile" data-section="mobile"><i class="fas fa-mobile-alt"></i> Sécurité Mobile</a></li>
+                    <li><a href="#settings" data-section="settings"><i class="fas fa-cog"></i> Paramètres</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <span class="user-name">Analyste</span>
+                <i class="fas fa-user-shield"></i>
+            </div>
+        </header>
+        
+        <main>
+            <!-- Section Analyse Réseau -->
+            <section id="network" class="content-section active">
+                <h2>Analyse Réseau</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" id="ip-info">
+                        <div class="tool-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>Info IP</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="ip-address">Adresse IP ou Domaine:</label>
+                                <input type="text" id="ip-address" placeholder="8.8.8.8 ou exemple.com">
+                                <button id="analyze-ip" class="btn primary">Analyser</button>
+                            </div>
+                            <div id="ip-results" class="results-area"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card" id="port-scan">
+                        <div class="tool-header">
+                            <i class="fas fa-plug"></i>
+                            <h3>Scan de Ports</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="scan-ip">Adresse IP:</label>
+                                <input type="text" id="scan-ip" placeholder="192.168.1.1">
+                                <label for="port-range">Ports (séparés par des virgules ou plage):</label>
+                                <input type="text" id="port-range" placeholder="80,443,8080 ou 1-1000">
+                                <button id="start-scan" class="btn primary">Scanner</button>
+                            </div>
+                            <div id="scan-results" class="results-area"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card" id="dns-lookup">
+                        <div class="tool-header">
+                            <i class="fas fa-server"></i>
+                            <h3>Résolution DNS</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="domain-name">Nom de domaine:</label>
+                                <input type="text" id="domain-name" placeholder="exemple.com">
+                                <button id="resolve-dns" class="btn primary">Résoudre</button>
+                            </div>
+                            <div id="dns-results" class="results-area"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card" id="network-scan">
+                        <div class="tool-header">
+                            <i class="fas fa-sitemap"></i>
+                            <h3>Analyse Réseau Local</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="network-range">Plage d'adresses réseau:</label>
+                                <input type="text" id="network-range" placeholder="192.168.1.0/24">
+                                <button id="scan-network" class="btn primary">Analyser</button>
+                            </div>
+                            <div id="network-results" class="results-area"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card" id="reverse-ip">
+                        <div class="tool-header">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h3>Reverse IP</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="reverse-ip-input">Adresse IP:</label>
+                                <input type="text" id="reverse-ip-input" placeholder="192.168.1.1">
+                                <button id="reverse-lookup" class="btn primary">Rechercher</button>
+                            </div>
+                            <div id="reverse-results" class="results-area"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section OSINT -->
+            <section id="osint" class="content-section">
+                <h2>OSINT</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" id="username-search">
+                        <div class="tool-header">
+                            <i class="fas fa-user-secret"></i>
+                            <h3>Recherche par Pseudo/Email</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="username-input">Pseudo ou Email:</label>
+                                <input type="text" id="username-input" placeholder="johndoe ou john@example.com">
+                                <button id="search-username" class="btn primary">Rechercher</button>
+                            </div>
+                            <div id="username-results" class="results-area"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card" id="shodan-search">
+                        <div class="tool-header">
+                            <i class="fas fa-globe"></i>
+                            <h3>Recherche Shodan</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="shodan-query">Requête Shodan:</label>
+                                <input type="text" id="shodan-query" placeholder="port:22 country:FR">
+                                <button id="search-shodan" class="btn primary">Rechercher</button>
+                            </div>
+                            <div id="shodan-results" class="results-area"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section Sécurité Mobile -->
+            <section id="mobile" class="content-section">
+                <h2>Sécurité Mobile</h2>
+                <div class="tools-grid">
+                    <div class="tool-card" id="sms-tool">
+                        <div class="tool-header">
+                            <i class="fas fa-sms"></i>
+                            <h3>Envoi/Réception SMS</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="phone-number">Numéro de téléphone:</label>
+                                <input type="text" id="phone-number" placeholder="+33612345678">
+                                <label for="sms-message">Message:</label>
+                                <textarea id="sms-message" placeholder="Votre message ici..."></textarea>
+                                <button id="send-sms" class="btn primary">Envoyer</button>
+                            </div>
+                            <div id="sms-results" class="results-area">
+                                <h4>Messages reçus</h4>
+                                <div class="sms-inbox"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card" id="otp-test">
+                        <div class="tool-header">
+                            <i class="fas fa-key"></i>
+                            <h3>Test OTP</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <label for="otp-phone">Numéro de téléphone:</label>
+                                <input type="text" id="otp-phone" placeholder="+33612345678">
+                                <label for="otp-service">Service (optionnel):</label>
+                                <input type="text" id="otp-service" placeholder="Nom du service à tester">
+                                <button id="send-otp" class="btn primary">Envoyer OTP</button>
+                            </div>
+                            <div id="otp-results" class="results-area"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card" id="virtual-number">
+                        <div class="tool-header">
+                            <i class="fas fa-phone-alt"></i>
+                            <h3>Numéro Virtuel</h3>
+                        </div>
+                        <div class="tool-content">
+                            <div class="form-group">
+                                <button id="generate-number" class="btn primary">Générer un numéro</button>
+                                <div id="virtual-numbers" class="virtual-numbers-list">
+                                    <!-- Les numéros virtuels seront ajoutés ici -->
+                                </div>
+                            </div>
+                            <div id="virtual-sms" class="results-area">
+                                <h4>SMS Reçus</h4>
+                                <div class="sms-messages">
+                                    <p class="empty-state">Aucun message reçu</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section Paramètres -->
+            <section id="settings" class="content-section">
+                <h2>Paramètres</h2>
+                <div class="settings-container">
+                    <div class="settings-card">
+                        <h3>Configuration API</h3>
+                        <div class="form-group">
+                            <label for="shodan-api">Clé API Shodan:</label>
+                            <input type="text" id="shodan-api" placeholder="Votre clé API Shodan">
+                            
+                            <label for="ipinfo-api">Clé API IPInfo:</label>
+                            <input type="text" id="ipinfo-api" placeholder="Votre clé API IPInfo">
+                            
+                            <label for="hibp-api">Clé API HaveIBeenPwned:</label>
+                            <input type="text" id="hibp-api" placeholder="Votre clé API HaveIBeenPwned">
+                            
+                            <label for="twilio-sid">Twilio SID:</label>
+                            <input type="text" id="twilio-sid" placeholder="Votre Twilio SID">
+                            
+                            <label for="twilio-token">Twilio Token:</label>
+                            <input type="text" id="twilio-token" placeholder="Votre Twilio Token">
+                            
+                            <button id="save-settings" class="btn primary">Enregistrer</button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Préférences</h3>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="dark-mode"> Mode sombre
+                            </label>
+                            <label>
+                                <input type="checkbox" id="save-logs"> Sauvegarder les logs
+                            </label>
+                            <label>
+                                <input type="checkbox" id="auto-refresh"> Actualisation automatique
+                            </label>
+                            <label for="refresh-interval">Intervalle d'actualisation (sec):</label>
+                            <input type="number" id="refresh-interval" min="5" max="3600" value="60">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>CyberTools &copy; 2025 - Outil interne pour la cybersécurité</p>
+        </footer>
+    </div>
+    
+    <script src="js/main.js"></script>
+    <script src="js/network.js"></script>
+    <script src="js/osint.js"></script>
+    <script src="js/mobile.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>
